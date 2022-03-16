@@ -6,49 +6,29 @@ import styles from '../styles/nav.module.css';
 export const Nav = () => {
   const [active, setActive] = useState(false);
   const navbar = useRef(null);
-  useEffect(()=>{
-    window.addEventListener("scroll", () => {
-      if(navbar.current!==null){
-        if (window.scrollY > navbar.current.offsetHeight + 100) {
-          navbar.current.classList.add(`${styles.hide}`);
-        } else if (window.scrollY < navbar.current.offsetHeight -5) {
-          navbar.current.classList.remove(`${styles.hide}`);
-        }
-      }
-    });
-  },[]);
-  /* const [show, setShow] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
 
-  const controlNavbar = () => {
-    if (typeof window !== 'undefined') {
-      if (window.scrollY > lastScrollY) {
-        // if scroll down hide the navbar
-        setShow(true);
-      } else {
-        // if scroll up show the navbar
-        setShow(false);
-      }
-
-      // remember current page location to use in the next move
-      setLastScrollY(window.scrollY);
-    }
-  };
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.addEventListener('scroll', controlNavbar);
-
-      // cleanup function
-      return () => {
-        window.removeEventListener('scroll', controlNavbar);
-      };
-    }
-  }, [lastScrollY]); */
-
+  
   const handleClick = () => {
     setActive(!active);
   };
+
+  
+  useEffect(() => {
+    let prevScrollpos = window.pageYOffset;
+
+    window.addEventListener("scroll", () => {
+      let currentScrollPos = window.pageYOffset;
+      
+        if (prevScrollpos > currentScrollPos) {
+          navbar.current.classList.add(`${styles.nav}`);
+          navbar.current.classList.remove(`${styles.hide}`)
+        } else {
+          navbar.current.classList.add(`${styles.hide}`);
+          navbar.current.classList.remove(`${styles.nav}`)
+      }
+      prevScrollpos = currentScrollPos;
+      })
+  },[]);
 
   return (
     <>

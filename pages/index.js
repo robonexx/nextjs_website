@@ -11,8 +11,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <section className={styles.section}></section>
-        <section className={styles.section}></section>
+        <section className={styles.section}>First Section</section>
+        <section className={styles.section}>Second Section</section>
+        <section className={styles.section}>Third Section</section>
         
       </main>
 

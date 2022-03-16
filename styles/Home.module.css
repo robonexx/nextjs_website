@@ -20,6 +20,9 @@
   width: 100%;
   height: 80vh;
   background: plum;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .footer {
