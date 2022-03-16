@@ -1,11 +1,23 @@
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import NavMobile from './NavMobile';
 import styles from '../styles/nav.module.css';
 
 export const Nav = () => {
   const [active, setActive] = useState(false);
-  const [show, setShow] = useState(true);
+  const navbar = useRef(null);
+  useEffect(()=>{
+    window.addEventListener("scroll", () => {
+      if(navbar.current!==null){
+        if (window.scrollY > navbar.current.offsetHeight + 100) {
+          navbar.current.classList.add(`${styles.hide}`);
+        } else if (window.scrollY < navbar.current.offsetHeight -5) {
+          navbar.current.classList.remove(`${styles.hide}`);
+        }
+      }
+    });
+  },[]);
+  /* const [show, setShow] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
   const controlNavbar = () => {
@@ -32,7 +44,7 @@ export const Nav = () => {
         window.removeEventListener('scroll', controlNavbar);
       };
     }
-  }, [lastScrollY]);
+  }, [lastScrollY]); */
 
   const handleClick = () => {
     setActive(!active);
@@ -40,7 +52,7 @@ export const Nav = () => {
 
   return (
     <>
-      <nav className={`${show && styles.hide} ${!show && styles.nav}`}>
+      <nav className={styles.nav} ref={navbar}>
         <Link href='/'>
           <a className='inline-flex items-center p-2 mr-4 '>
             <span className='text-xl text-white font-bold uppercase tracking-wide'>
