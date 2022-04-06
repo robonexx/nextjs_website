@@ -22,7 +22,8 @@ export const Nav = () => {
         if (prevScrollpos > currentScrollPos) {
           navbar.current.classList.add(`${styles.nav}`);
           navbar.current.classList.remove(`${styles.hide}`)
-        } else {
+        }
+        else {
           navbar.current.classList.add(`${styles.hide}`);
           navbar.current.classList.remove(`${styles.nav}`)
       }
@@ -34,9 +35,9 @@ export const Nav = () => {
     <>
       <nav className={styles.nav} ref={navbar}>
         <Link href='/'>
-          <a className='inline-flex items-center p-2 mr-4 '>
+          <a className='inline-flex items-center p-2 mr-4'>
             <span className='text-xl text-white font-bold uppercase tracking-wide'>
-              Creative Minds . Life
+              LOCKERLEGENDS
             </span>
           </a>
         </Link>

@@ -1,0 +1,7 @@
+.logo {
+    max-width: 80%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 10rem;
+}
